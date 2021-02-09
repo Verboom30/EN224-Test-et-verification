@@ -1,9 +1,16 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "math.h"
+#include <assert.h>
 
 int PGCD(int A, int B)
 {
+	int tmpA =A;
+	int tmpB =B;
+	assert(A>=0);
+	assert(B>=0);
+	assert(A<=65536);
+	assert(B<=65536);
 	while (A!=B) {
 		if (A>B) {
 			A=A-B;
@@ -11,6 +18,11 @@ int PGCD(int A, int B)
 			B=B-A;
 		}
 	}
+	assert(A>=0);
+	assert(A<=tmpA);
+	assert(A<=tmpB);
+	assert(tmpA%A==0);
+	assert(tmpB%A==0);
 	return A;
 }
 
@@ -32,13 +44,6 @@ int main (int argc, char * argv []){
 	A=1755,B=1053;
 	printf("A=%d B=%d PGCD=%d\n",A,B,PGCD(A,B));
 	A=6897,B=5073;
-	printf("A=%d B=%d PGCD=%d\n",A,B,PGCD(A,B));
-	A=65535,B=221;
-	printf("A=%d B=%d PGCD=%d\n",A,B,PGCD(A,B));
-	A=-20,B=3;
-	printf("A=%d B=%d PGCD=%d\n",A,B,PGCD(A,B));
-	A=65535,B=0;
-	printf("A=%d B=%d PGCD=%d\n",A,B,PGCD(A,B));
 	printf("(II) End of PGCD program\n");
   return 0;
 }
